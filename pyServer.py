@@ -17,11 +17,6 @@ def get_github_notafication():
         print(data)
         return data
 
-# # Defines a handler for the 'push' event
-# @webhook.hook()       
-# def on_push(data):
-#     print("Got push with: {0}".format(data))
-
 
 if __name__ == '__main__':
     app.run()
