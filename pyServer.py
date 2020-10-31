@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return "Hello Its Home"
+    return "Hello Its Home welcome"
 
 @app.route('/github', methods=['POST'])
 def get_github_notafication():
