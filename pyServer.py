@@ -17,7 +17,7 @@ g = Github(gitToken)
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
 
-@app.route('/github')
+@app.route('/')
 def homepage():
     return "test 123456879"
 
