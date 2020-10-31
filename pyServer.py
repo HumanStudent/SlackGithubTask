@@ -6,10 +6,14 @@ from github_webhook import Webhook
 # init and creating our flask application
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
-print("line 9")
+
 @app.route('/')
 def homepage():
     return "test 1234"
+
+@webhook.hook()        # Defines a handler for the 'push' event
+def on_push(data):
+    print("Got push with: {0}".format(data))
 
 # @app.route('/github', methods=['POST'])
 # def get_github_notafication():
