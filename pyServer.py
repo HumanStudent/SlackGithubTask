@@ -5,6 +5,7 @@ from github_webhook import Webhook
 
 # init and creating our flask application
 app = Flask(__name__)
+webhook = Webhook(app) # Defines '/postreceive' endpoint
 
 @app.route('/')
 def homepage():
