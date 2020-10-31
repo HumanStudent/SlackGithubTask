@@ -1,2 +1,1 @@
 worker: python pyServer.py
-heroku config:set FLASK_APP=flaskr
