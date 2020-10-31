@@ -10,12 +10,12 @@ app = Flask(__name__)
 def homepage():
     return "Hello Its Home welcome"
 
-@app.route('/github', methods=['POST'])
-def get_github_notafication():
-    if request.headers['Content-Type'] == 'application/json':
-        data = json.dumps(request.json)
-        print(data)
-        return data
+# @app.route('/github', methods=['POST'])
+# def get_github_notafication():
+#     if request.headers['Content-Type'] == 'application/json':
+#         data = json.dumps(request.json)
+#         print(data)
+#         return data
 
 
 if __name__ == '__main__':
