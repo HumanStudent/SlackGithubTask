@@ -7,7 +7,7 @@ from github_webhook import Webhook
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
 
-@app.route('/')
+@app.route('/github')
 def homepage():
     return "test 123456879"
 
