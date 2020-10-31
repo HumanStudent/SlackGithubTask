@@ -6,7 +6,7 @@ from github_webhook import Webhook
 # init and creating our flask application
 app = Flask(__name__)
 
-@app.route('/https://application-t1.herokuapp.com/')
+@app.route('/')
 def homepage():
     return "Hello Its Home welcome"
 
