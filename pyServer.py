@@ -24,12 +24,12 @@ def homepage():
 def on_push(data):
     print("Got push with: {0}".format(data))
 
-@app.route('/github', methods=['POST'])
-def get_github_notafication():
-    if request.headers['Content-Type'] == 'application/json':
-        data = json.dumps(request.json)
-        print(data)
-        return data
+# @app.route('/', methods=['POST'])
+# def get_github_notafication():
+#     if request.headers['Content-Type'] == 'application/json':
+#         data = json.dumps(request.json)
+#         print(data)
+#         return data
 
 
 if __name__ == "__main__":
