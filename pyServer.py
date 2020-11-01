@@ -20,9 +20,9 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 def homepage():
     return "test 123456879"
 
-@webhook.hook()        # Defines a handler for the 'push' event
-def on_push(data):
-    print("Got push with: {0}".format(data))
+# @webhook.hook()        # Defines a handler for the 'push' event
+# def on_push(data):
+#     print("Got push with: {0}".format(data))
 
 # @app.route('/', methods=['POST'])
 # def get_github_notafication():
