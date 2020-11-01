@@ -13,7 +13,6 @@ from dotenv import load_dotenv
 # g = Github(gitToken)
 
 
-# init and creating our flask application
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
 
