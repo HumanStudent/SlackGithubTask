@@ -24,10 +24,9 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 @app.route('/')
 def get_github_notafication():
     if request.headers['Content-Type'] == 'application/json':
-        data_string = json.loads(request.json)
-        data = json.dumps(data_string)
-        # data = json.dumps(request.json, indent=2)
-        print(data)
+        data = json.dumps(request.json, indent=2)
+        # print(data)
+        print("Got push with: {0}".format(data))
         return data
 
 @webhook.hook()        # Defines a handler for the 'push' event
