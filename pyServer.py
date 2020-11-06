@@ -26,7 +26,7 @@ def get_github_notafication():
     if request.headers['Content-Type'] == 'application/json':
         # data = json.dumps(request.json)
         data = json.loads(request.json)
-        # data = json.dumps(request.json, indent=2)
+        data = json.dumps(request.json, indent=2)
         print(data)
         return data
 
