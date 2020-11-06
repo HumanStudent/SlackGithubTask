@@ -20,7 +20,7 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 # def homepage():
 #     return "test 123456879"
 
-# @app.route('/', methods=['GET'])
+
 @app.route('/')
 def get_github_notafication():
     if request.headers['Content-Type'] == 'application/json':
