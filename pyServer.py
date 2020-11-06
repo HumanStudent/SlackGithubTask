@@ -6,11 +6,14 @@ from github_webhook import Webhook
 from github import Github
 from pathlib import Path
 from dotenv import load_dotenv
+from slack import WebClient
 
-# env_path = Path('.') / '.env'
-# load_dotenv(dotenv_path=env_path) 
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path) 
 # gitToken = os.environ['GITTOKEN']
 # g = Github(gitToken)
+client = WebClient(token=os.environ['BOB_THE_BOT_TOKEN'])
+
 
 
 app = Flask(__name__)
@@ -27,17 +30,21 @@ def get_github_payload():
     if 'commits' not in data:
         # slack inegeration code here will be weritten (not now)
         return "not a push event"
-    elif data['action'] == 'opened':        # missing other actions
-        # slack inegeration code here will be weritten (not now)
-         return "this is a pull_request"
+    client.chat_postMessage(channel='#testbotbot', text="hello from the other side")
+     
 
-    elif data['action'] == 'submitted':     # missing other actions
-        # slack inegeration code here will be weritten (not now)
-        return "this is a pull_request_review"
 
-    elif data['action'] == 'created':       # missing other actions
-        # slack inegeration code here will be weritten (not now)
-        return "this is a pull_request_review_comment"
+    # elif data['action'] == 'opened':        # missing other actions
+    #     # slack inegeration code here will be weritten (not now)
+    #      return "this is a pull_request"
+
+    # elif data['action'] == 'submitted':     # missing other actions
+    #     # slack inegeration code here will be weritten (not now)
+    #     return "this is a pull_request_review"
+
+    # elif data['action'] == 'created':       # missing other actions
+    #     # slack inegeration code here will be weritten (not now)
+    #     return "this is a pull_request_review_comment"
     
     return data
 
