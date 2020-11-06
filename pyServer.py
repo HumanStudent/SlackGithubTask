@@ -26,7 +26,7 @@ def get_github_notafication():
     # if request.headers['Content-Type'] == 'application/json':
     #     data = json.dumps(request.json)
     data = request.get_json()
-    print(data)
+    # print(data)
     return data
 
 # @webhook.hook()        # Defines a handler for the 'push' event
