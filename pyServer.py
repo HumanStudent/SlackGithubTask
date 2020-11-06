@@ -24,24 +24,20 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 @app.route('/')
 def get_github_payload():
     data = request.get_json()
-    # if 'commits' not in data:
-    #     # slack inegeration code here will be weritten (not now)
-    #     return "not a push event"
-    
-    # # switch case instead of elif --> switch(data['action']) ...
-    # # 
-    # # 
-    # elif data['action'] == 'opened':        # missing other actions
-    #     # slack inegeration code here will be weritten (not now)
-    #      return "this is a pull_request"
+    if 'commits' not in data:
+        # slack inegeration code here will be weritten (not now)
+        return "not a push event"
+    elif data['action'] == 'opened':        # missing other actions
+        # slack inegeration code here will be weritten (not now)
+         return "this is a pull_request"
 
-    # elif data['action'] == 'submitted':     # missing other actions
-    #     # slack inegeration code here will be weritten (not now)
-    #     return "this is a pull_request_review"
+    elif data['action'] == 'submitted':     # missing other actions
+        # slack inegeration code here will be weritten (not now)
+        return "this is a pull_request_review"
 
-    # elif data['action'] == 'created':       # missing other actions
-    #     # slack inegeration code here will be weritten (not now)
-    #     return "this is a pull_request_review_comment"
+    elif data['action'] == 'created':       # missing other actions
+        # slack inegeration code here will be weritten (not now)
+        return "this is a pull_request_review_comment"
     
     return data
 
