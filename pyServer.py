@@ -8,11 +8,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 from slack import WebClient
 
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path) 
+# env_path = Path('.') / '.env'
+# load_dotenv(dotenv_path=env_path) 
 # gitToken = os.environ['GITTOKEN']
 # g = Github(gitToken)
-client = WebClient(token=os.environ['BOB_THE_BOT_TOKEN'])
+# client = WebClient(token=os.environ['BOB_THE_BOT_TOKEN'])
 
 
 
@@ -37,7 +37,6 @@ def get_github_notafication():
     if request.headers['Content-Type'] == 'application/json':
         data = json.dumps(request.json)
     print(data)
-    return data
      
 
 
