@@ -32,12 +32,12 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 #         return "not a push event"
 #     client.chat_postMessage(channel='#testbotbot', text="hello from the other side")
 
-@app.route('/')
+@app.route('/webhook')
 def get_github_notafication():
     if request.headers['Content-Type'] == 'application/json':
         data = json.dumps(request.json)
     print(data)
-     
+    return data 
 
 
     # elif data['action'] == 'opened':        # missing other actions
@@ -52,10 +52,10 @@ def get_github_notafication():
     #     # slack inegeration code here will be weritten (not now)
     #     return "this is a pull_request_review_comment"
     
-    return data
+    # return data
 
 @webhook.hook()        # Defines a handler for the 'push' event
-def on_push(data):  
+def on_push(data):
     print("Got push with: {0}".format(data))
 
 
