@@ -17,7 +17,7 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 #     return "test 123456879"
 
 # @app.route('/', methods=['GET'])
-@app.route('/webhook', methods['GET', 'POST'])
+@app.route('/')
 def get_github_payload():
     if request.headers['Content-Type'] == 'application/json':
         data = json.dumps(request.json)
