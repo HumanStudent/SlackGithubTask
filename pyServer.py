@@ -39,9 +39,9 @@ def get_github_payload():
     #     # slack inegeration code here will be weritten (not now)
     #     return "this is a pull_request_review_comment"
 
-@webhook.hook()        # Defines a handler for the 'push' event
-def on_push(data):  
-    print("Got push with: {0}".format(data))
+# @webhook.hook()        # Defines a handler for the 'push' event
+# def on_push(data):  
+#     print("Got push with: {0}".format(data))
 
 
 if __name__ == "__main__":
