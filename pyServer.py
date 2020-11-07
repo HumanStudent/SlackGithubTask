@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask import request
+from flask import request,Response
 from flask import json
 from github_webhook import Webhook
 from github import Github
@@ -23,6 +23,10 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 # def homepage():
 #     return "test 123456879"
 
+@app.route("/", methods=['GET', 'POST'])        # Standard Flask endpoint
+def hello_world():
+    return "Hello, World!"
+
 # @app.route('/', methods=['GET'])
 # @app.route('/')
 # def get_github_payload():
@@ -32,12 +36,15 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 #         return "not a push event"
 #     client.chat_postMessage(channel='#testbotbot', text="hello from the other side")
 
-@app.route('/webhook')
+@app.route("/webhook", methods=['GET', 'POST'])
 def get_github_notafication():
-    if request.headers['Content-Type'] == 'application/json':
-        data = json.dumps(request.json)
-    print(data)
-    return data 
+    print("** New Payload from GitHub **")
+    print(request.json);
+    return Response(status=200)
+    # if request.headers['Content-Type'] == 'application/json':
+    #     data = json.dumps(request.json)
+    # print(data)
+    # return data 
 
 
     # elif data['action'] == 'opened':        # missing other actions
@@ -54,11 +61,11 @@ def get_github_notafication():
     
     # return data
 
-@webhook.hook()        # Defines a handler for the 'push' event
-def on_push(data):
-    print("Got push with: {0}".format(data))
+# @webhook.hook()        # Defines a handler for the 'push' event
+# def on_push(data):
+#     print("Got push with: {0}".format(data))
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="127.0.0.1", port=8080)
 
