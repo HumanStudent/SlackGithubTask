@@ -24,13 +24,20 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 #     return "test 123456879"
 
 # @app.route('/', methods=['GET'])
+# @app.route('/')
+# def get_github_payload():
+#     data = request.get_json()
+#     if 'commits' not in data:
+#         # slack inegeration code here will be weritten (not now)
+#         return "not a push event"
+#     client.chat_postMessage(channel='#testbotbot', text="hello from the other side")
+
 @app.route('/')
-def get_github_payload():
-    data = request.get_json()
-    if 'commits' not in data:
-        # slack inegeration code here will be weritten (not now)
-        return "not a push event"
-    client.chat_postMessage(channel='#testbotbot', text="hello from the other side")
+def get_github_notafication():
+    if request.headers['Content-Type'] == 'application/json':
+        data = json.dumps(request.json)
+    print(data)
+    return data
      
 
 
