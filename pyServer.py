@@ -12,12 +12,12 @@ from slack import WebClient
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
 
-# @app.route('/', methods=['GET', 'POST'])
-# def homepage():
-#     return "test 123456879"
+@app.route('/', methods=['GET', 'POST'])
+def homepage():
+    return "test 123456879"
 
 # @app.route('/', methods=['GET'])
-@app.route('/')
+@app.route('/webhook', methods=['GET','POST'])
 def get_github_payload():
     if request.headers['Content-Type'] == 'application/json':
         data = json.dumps(request.json)
@@ -29,7 +29,7 @@ def get_github_payload():
 #     print("Got push with: {0}".format(data))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="127.0.0.1", port=8080)
 
 
     # if 'commits' not in data:
