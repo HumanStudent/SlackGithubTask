@@ -17,12 +17,20 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 #     return "test 123456879"
 
 # @app.route('/', methods=['GET'])
-@app.route('/')
+@app.route('/webhook')
 def get_github_payload():
     if request.headers['Content-Type'] == 'aplication/json':
         data = json.dumps(request.json)
         print(data)
         return data
+
+# @webhook.hook()        # Defines a handler for the 'push' event
+# def on_push(data):  
+#     print("Got push with: {0}".format(data))
+
+if __name__ == "__main__":
+    app.run()
+
 
     # if 'commits' not in data:
     #     # slack inegeration code here will be weritten (not now)
@@ -39,11 +47,7 @@ def get_github_payload():
     #     # slack inegeration code here will be weritten (not now)
     #     return "this is a pull_request_review_comment"
 
-# @webhook.hook()        # Defines a handler for the 'push' event
-# def on_push(data):  
-#     print("Got push with: {0}".format(data))
 
 
-if __name__ == "__main__":
-    app.run()
+
 
