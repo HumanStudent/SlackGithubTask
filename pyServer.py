@@ -38,9 +38,10 @@ def hello_world():
 
 @app.route("/webhook", methods=['GET', 'POST'])
 def get_github_notafication():
-    print("** New Payload from GitHub **")
-    print(request.json)
-    return Response(status=200)
+        if request.headers['Content-Type'] == 'application/json':
+            data = json.dumps(request.json)
+        print(data)
+        return data 
     # if request.headers['Content-Type'] == 'application/json':
     #     data = json.dumps(request.json)
     # print(data)
