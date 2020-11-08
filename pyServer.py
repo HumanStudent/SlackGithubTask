@@ -22,7 +22,7 @@ def get_github_payload():
     if request.headers['Content-Type'] == 'application/json':
         # data = json.dumps(request.json)
         data = request.json
-        webhook_url = 'https://app-t1.herokuapp.com/webhook'
+        webhook_url = 'https://hooks.slack.com/services/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'
         slack_data = {"text": "hello world 2020"}
         response = request.post(
             webhook_url, data=json.dumps(slack_data),
