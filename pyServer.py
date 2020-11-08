@@ -24,7 +24,10 @@ def get_github_payload():
         data = request.json
         webhook_url = 'WEBHOOK_URL'
         slack_data = {"text": "hello world 2020"}
-        response = request.post(webhook_url, data=json.dumps(slack_data),headers={'Content-Type': 'application/json'} )
+        response = request.get(
+            webhook_url, data=json.dumps(slack_data),
+            headers={'Content-Type': 'application/json'}
+             )
         print(data)
         return data
 
