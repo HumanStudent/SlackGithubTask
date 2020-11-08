@@ -14,7 +14,7 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
-    return "test 7777"
+    return "test 24/7"
 
 # @app.route('/', methods=['GET'])
 @app.route('/webhook', methods=['GET','POST'])
@@ -23,13 +23,12 @@ def get_github_payload():
         # data = json.dumps(request.json)
         data = request.json
         webhook_url = 'WEBHOOK_URL'
-        slack_data = {"text": "hello world 2020"}
-        response = request.get(
-            webhook_url, data=json.dumps(slack_data),
-            headers={'Content-Type': 'application/json'}
-             )
+        # slack_data = {'text': 'hello world 2020'}
+        slack_data = request.headers['X-GitHub-Event']
+        response = request.post(webhook_url, data=slack_data)
         print(data)
-        return data
+        return Response(status=200)
+        # return data
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080)
