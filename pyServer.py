@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask import request
+from flask import request, Response
 from flask import json
 from github_webhook import Webhook
 from github import Github
@@ -20,13 +20,17 @@ def homepage():
 @app.route('/webhook', methods=['GET','POST'])
 def get_github_payload():
     if request.headers['Content-Type'] == 'application/json':
-        data = json.dumps(request.json)
+        # data = json.dumps(request.json)
+        data = request.json
+        webhook_url = 'https://app-t1.herokuapp.com/webhook'
+        slack_data = {"text": "hello world 2020"}
+        response = request.post(
+            webhook_url, data=json.dumps(slack_data),
+            headers={'Content-Type': 'application/json'}
+
+        )
         print(data)
         return data
-
-# @webhook.hook()        # Defines a handler for the 'push' event
-# def on_push(data):  
-#     print("Got push with: {0}".format(data))
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080)
