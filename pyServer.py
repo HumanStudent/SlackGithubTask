@@ -14,7 +14,7 @@ webhook = Webhook(app) # Defines '/postreceive' endpoint
 
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
-    return "test 999999999999"
+    return "test 7777"
 
 # @app.route('/', methods=['GET'])
 @app.route('/webhook', methods=['GET','POST'])
