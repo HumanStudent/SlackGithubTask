@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask import request
+from flask import request, Response
 from flask import json
 from github_webhook import Webhook
 from github import Github
@@ -12,17 +12,20 @@ from slack import WebClient
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def homepage():
     return "test 123456879"
 
 # @app.route('/', methods=['GET'])
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def get_github_payload():
-    if request.headers['Content-Type'] == 'application/json':
-        data = json.dumps(request.json)
-        print(data)
-        return data
+    print("** New Payload from GitHub **")
+    print(request.json);
+    return Response(status=200)
+    # if request.headers['Content-Type'] == 'application/json':
+    #     data = json.dumps(request.json)
+    #     print(data)
+    #     return data
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080)
