@@ -23,6 +23,7 @@ def get_github_payload():
     data = json.dumps(request.json)
     print(data);
     return data
+    
     # if request.headers['Content-Type'] == 'application/json':
     #     data = json.dumps(request.json)
     #     print(data)
