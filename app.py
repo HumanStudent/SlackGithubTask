@@ -10,7 +10,9 @@ from slack import WebClient
 
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
-client = WebClient(token=os.environ['BOB_THE_BOT_TOKEN'])
+
+
+client = WebClient(token=os.environ['TOKEN'])
 
 def send_to_slack( text_to_send ,channel="#testbotbot"):
     client.chat_postMessage(channel= channel, text=text_to_send)
