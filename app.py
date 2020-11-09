@@ -10,10 +10,10 @@ from slack import WebClient
 
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
-# client = WebClient(token=os.environ['BOB_THE_BOT_TOKEN'])
+client = WebClient(token=os.environ['BOB_THE_BOT_TOKEN'])
 
-# def send_to_slack( text_to_send ,channel="#testbotbot"):
-#     client.chat_postMessage(channel= channel, text=text_to_send)
+def send_to_slack( text_to_send ,channel="#testbotbot"):
+    client.chat_postMessage(channel= channel, text=text_to_send)
 
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
@@ -37,7 +37,7 @@ def respond():
     print("***************************************************************************")
     print("Headers are: " + str(headers))
     print(headers_event + '   ' +repo_name + '   ' +event_date_time )
-    # send_to_slack(headers_event)
+    send_to_slack(headers_event)
     return data
 
 if __name__ == "__main__":
