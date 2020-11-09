@@ -12,7 +12,7 @@ from slack import WebClient
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def homepage():
     return "test hhh"
 
