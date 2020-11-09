@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask import request, Response
+from flask import request, Response, requests
 from flask import json
 from github_webhook import Webhook
 from github import Github
@@ -11,11 +11,13 @@ from slack import WebClient
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
-
-client = WebClient(token=os.environ['TOKEN'])
-
+token = "https://hooks.slack.com/services/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"
 def send_to_slack( text_to_send ,channel="#testbotbot"):
-    client.chat_postMessage(channel= channel, text=text_to_send)
+    requests.POST(token, data = json.dumps(text_to_send))
+# client = WebClient(token=os.environ['TOKEN'])
+
+# def send_to_slack( text_to_send ,channel="#testbotbot"):
+#     client.chat_postMessage(channel= channel, text=text_to_send)
 
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
