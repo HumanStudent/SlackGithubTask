@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask import request, Response, requests
+from flask import request, Response
 from flask import json
 from github_webhook import Webhook
 from github import Github
@@ -11,13 +11,11 @@ from slack import WebClient
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
-token = os.environ['URL']
-def send_to_slack( text_to_send ,channel="#testbotbot"):
-    requests.POST(token, data = json.dumps(text_to_send))
-# client = WebClient(token=os.environ['TOKEN'])
 
-# def send_to_slack( text_to_send ,channel="#testbotbot"):
-#     client.chat_postMessage(channel= channel, text=text_to_send)
+client = WebClient(token=os.environ['SLACK_BOT_OAUTH_TOKEN'])
+
+def send_to_slack( text_to_send ,channel="#testbotbot"):
+    client.chat_postMessage(channel= channel, text=text_to_send)
 
 app = Flask(__name__)
 webhook = Webhook(app) # Defines '/postreceive' endpoint
@@ -31,8 +29,8 @@ def respond():
     if request.method == 'GET':
         print("This is a GET request")
     if request.method == 'POST':
-        print("AMIGO")
-    print("** New Payload from GitHub **")
+        print("this is post request")
+    
     data = request.json
     headers = request.headers
     headers_event = request.headers['X-GitHub-Event']
