@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask import request, Response
+from flask import request, Response,response
 from flask import json
 from github_webhook import Webhook
 from github import Github
@@ -37,6 +37,9 @@ def respond():
     print("***************************************************************************")
     print("Headers are: " + str(headers))
     print(headers_event + '   ' +repo_name + '   ' +event_date_time )
+    print("***************************************************************************")
+    event_date = response.headers['Date']
+    print("this is the event date:  " + event_date)
     send_to_slack(headers_event)
     return data
 
