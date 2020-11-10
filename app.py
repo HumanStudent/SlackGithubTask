@@ -37,10 +37,9 @@ def respond():
     print("***************************************************************************")
     print("Headers are: " + str(headers))
     print(headers_event + '   ' +repo_name + '   ' +event_date_time )
-    print("***************************************************************************")
-    event_date = response.headers['Date']
-    print("this is the event date:  " + event_date)
+    
     send_to_slack(headers_event)
+    print("***************************************************************************")
     return data
 
 if __name__ == "__main__":
