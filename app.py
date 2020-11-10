@@ -45,15 +45,8 @@ def respond():
         event_timestamp = commit['timestamp']
         modified_file_name = commit['modified']
     file_name = str(modified_file_name)
-
-    # print(headers_event)
-    # print(event_action)
-    # print(repo_name)
-    # print(event_commit_comment)
-    # print(file_name)
-    # print(event_timestamp)
     
-    if event_action is not None:
+    if headers_event == 'pull_request':
         result_str = "Event occurred is: "+ headers_event + "  Action is: " + event_action  +"  Updated repo is: "+ repo_name + "  User is: "+ event_sender +  "  Commit is: "+ event_commit_comment + "  Modified file is: " + file_name + "  Updated date and time is: " + str(event_timestamp)
     else:
         result_str = "Event occurred is: "+ headers_event + "  Updated repo is: "+ repo_name + "  User is: "+ event_sender +  "  Commit is: "+ event_commit_comment + "  Modified file is: " + file_name + "  Updated date and time is: " + str(event_timestamp)
