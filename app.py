@@ -30,37 +30,39 @@ def respond():
         print("this is post request")
     
     data = request.json
-    headers = request.headers
-    headers_event = request.headers['X-GitHub-Event']
+    if 'action' not in data:
+        print(" *********** no action here *********** ")
+    else:
+        event_action = data['action']
+        print("action is: "+ event_action)
+
     repo_name = data['repository']['name']
-    event_date_time = data['repository']['updated_at']
-    print("***************************************************************************")
-    print("Headers are: " + str(headers))
-    print(headers_event + '   ' +repo_name + '   ' +event_date_time )
+    headers_event = request.headers['X-GitHub-Event']
+    event_sender = data['sender']['login']
+
+    for commit in data['commits']:
+        event_commit_comment = commit['message']
+        event_timestamp = commit['timestamp']
+        modified_file_name = commit['modified']
+    file_name = str(modified_file_name)
+
+    # print(headers_event)
+    # print(event_action)
+    # print(repo_name)
+    # print(event_commit_comment)
+    # print(file_name)
+    # print(event_timestamp)
     
-    send_to_slack(headers_event)
-    print("***************************************************************************")
+    if event_action is not None:
+        result_str = "Event occurred is: "+ headers_event + "  Action is: " + event_action  +"  Updated repo is: "+ repo_name + "  User is: "+ event_sender +  "  Commit is: "+ event_commit_comment + "  Modified file is: " + file_name + "  Updated date and time is: " + str(event_timestamp)
+    else:
+        result_str = "Event occurred is: "+ headers_event + "  Updated repo is: "+ repo_name + "  User is: "+ event_sender +  "  Commit is: "+ event_commit_comment + "  Modified file is: " + file_name + "  Updated date and time is: " + str(event_timestamp)
+   
+    send_to_slack(result_str)
     return data
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080)
-
-
-    # if 'commits' not in data:
-    #     # slack inegeration code here will be weritten (not now)
-    #     return "not a push event"
-    # elif data['action'] == 'opened':        # missing other actions
-    #     # slack inegeration code here will be weritten (not now)
-    #      return "this is a pull_request"
-
-    # elif data['action'] == 'submitted':     # missing other actions
-    #     # slack inegeration code here will be weritten (not now)
-    #     return "this is a pull_request_review"
-
-    # elif data['action'] == 'created':       # missing other actions
-    #     # slack inegeration code here will be weritten (not now)
-    #     return "this is a pull_request_review_comment"
-
 
 
 
