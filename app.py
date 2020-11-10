@@ -32,9 +32,12 @@ def respond():
     data = request.json
     if 'action' not in data:
         print(" *********** no action here *********** ")
+        print(" *********** no action here *********** ")
     else:
         event_action = data['action']
         print("action is: "+ event_action)
+
+
 
     repo_name = data['repository']['name']
     headers_event = request.headers['X-GitHub-Event']
