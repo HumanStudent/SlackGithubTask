@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask import request, Response,response
+from flask import request, Response
 from flask import json
 from github_webhook import Webhook
 from github import Github
